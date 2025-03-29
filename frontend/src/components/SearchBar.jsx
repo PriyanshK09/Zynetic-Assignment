@@ -44,6 +44,11 @@ const SearchBar = ({ onSearch }) => {
     localStorage.setItem('recentSearches', JSON.stringify(updatedSearches));
   };
 
+  const handleClearAll = () => {
+    setRecentSearches([]);
+    localStorage.removeItem('recentSearches');
+  };
+
   const clearInput = () => {
     setQuery('');
     setShowRecent(false);
@@ -90,18 +95,26 @@ const SearchBar = ({ onSearch }) => {
           className="absolute z-10 mt-2 w-full bg-white dark:bg-gray-700 rounded-lg shadow-lg transition-all duration-300 transform origin-top scale-y-100 opacity-100 animate-slide-in"
         >
           <div className="p-4">
-            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">
-              Recent Searches
-            </h4>
+            <div className="flex justify-between items-center mb-2">
+              <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+                Recent Searches
+              </h4>
+              <button
+                onClick={handleClearAll}
+                className="text-sm font-semibold text-gray-700 dark:text-gray-200 hover:underline"
+              >
+                Clear All
+              </button>
+            </div>
             <div className="flex flex-wrap gap-2">
               {recentSearches.map((search, index) => (
                 <div
                   key={index}
-                  className="flex items-center px-3 py-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white rounded-full text-sm cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors"
+                  className="flex items-center px-3 py-1 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white rounded-full text-sm cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors group"
                 >
                   <span onClick={() => handleRecentSearch(search)}>{search}</span>
                   <button
-                    className="ml-2 text-gray-500 hover:text-red-500 dark:hover:text-red-400 p-0 bg-transparent hover:bg-transparent relative -top-0.5"
+                    className="ml-2 text-gray-500 group-hover:text-red-500 dark:group-hover:text-red-400 p-0 bg-transparent hover:bg-transparent relative -top-0.5"
                     onClick={() => handleDeleteSearch(search)}
                   >
                     <FiTrash2 size={14} className="inline-block" />
