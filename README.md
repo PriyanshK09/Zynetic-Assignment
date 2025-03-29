@@ -2,6 +2,9 @@
 
 A modern and responsive Weather Dashboard web app built with React.js and Tailwind CSS. It fetches real-time weather data using the OpenWeatherMap API and provides users with live weather updates for any searched city. The app also includes a 5-day weather forecast, error handling, and a clean, user-friendly interface.
 
+## Deployment Link
+[Weather Dashboard](https://zyneticweather.netlify.app/)
+
 ## Features
 
 - **Real-Time Weather Updates**: Get current weather conditions for any city worldwide.
